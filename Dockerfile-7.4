@@ -74,15 +74,11 @@ RUN apk add --no-cache bash
 
 COPY nginx /
 RUN rm -Rf /var/www/*
-COPY php_ini/n_php7.4.ini /etc/php/7.4/php.ini
+COPY php_ini/php7.4.ini /etc/php/7.4/php.ini
 RUN chmod +x /sbin/runit-wrapper
 RUN chmod +x /sbin/runsvdir-start
 RUN chmod +x /etc/service/nginx/run
 RUN chmod +x /etc/service/php-fpm/run
-RUN dos2unix /sbin/runit-wrapper
-RUN dos2unix /sbin/runsvdir-start
-RUN dos2unix /etc/service/nginx/run
-RUN dos2unix /etc/service/php-fpm/run
 
 COPY default.conf /etc/nginx/conf.d/
 ARG SERVER_ROOT
